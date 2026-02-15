@@ -2,6 +2,31 @@
 
 A Python library for cleaning and parsing people's names from various formats. This library handles messy name data by removing titles, suffixes, special characters, and extracting first, middle, and last names intelligently.
 
+## Quick Start
+
+```python
+from src.FullNameCleaner import FullNameCleaner
+from src.FullNameParser import FullNameParser
+
+# Initialize
+cleaner = FullNameCleaner()
+parser = FullNameParser(cleaner)
+
+# Clean a name
+clean_name = cleaner.getCleanFullName('Dr. José García, PhD')
+print(clean_name)  # Output: 'jose garcia'
+
+# Parse names
+first_last = parser.getFirstAndLastName('francisco jiménez garcía')
+print(first_last)  # Output: ['francisco', 'garcia']
+
+first = parser.getFirstName('John Michael Smith')
+print(first)  # Output: 'john'
+
+last = parser.getLastName('John Michael Smith')
+print(last)  # Output: 'smith'
+```
+
 ## Features
 
 - **Name Cleaning**: Remove special characters, punctuation, titles (Dr., Jr., PhD, etc.), and professional suffixes
@@ -211,6 +236,55 @@ The library applies the following cleaning steps in order:
 ## Examples
 
 See the [examples](examples/) directory for more comprehensive examples.
+
+### Running Examples
+
+```bash
+# Basic usage examples
+python3 examples/basic_usage.py
+
+# International names examples
+python3 examples/international_names.py
+
+# Advanced usage examples
+python3 examples/advanced_usage.py
+```
+
+## Testing
+
+The library includes comprehensive unit tests covering all functionality.
+
+### Running Tests
+
+Run all tests:
+```bash
+python3 tests/run_all_tests.py
+```
+
+Run specific test files:
+```bash
+python3 -m unittest tests.test_fullname_cleaner -v
+python3 -m unittest tests.test_fullname_parser -v
+python3 -m unittest tests.test_cleaners -v
+```
+
+Run a specific test case:
+```bash
+python3 -m unittest tests.test_fullname_cleaner.TestFullNameCleaner.test_clean_simple_name -v
+```
+
+The test suite includes:
+- 20 tests for FullNameCleaner class
+- 29 tests for FullNameParser class
+- 21 tests for individual cleaner modules
+- **Total: 70 tests**
+
+All tests validate:
+- Name cleaning and normalization
+- First, middle, and last name extraction
+- International character handling
+- Edge cases and error conditions
+- Individual cleaner module functionality
 
 ## Contributing
 
