@@ -9,5 +9,5 @@ class RemoveUnEnglish(IFullNameCleaner):
         pass
 
     def getCleanFullName(self, content: string):
-        res = re.sub("[^A-Za-z0-9.\- ]", '', content)
+        res = re.sub(r"[^A-Za-z0-9.\- ]", '', content)
         return res
